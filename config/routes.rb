@@ -10,5 +10,5 @@ Rails.application.routes.draw do
 
   resources :employees
 
-  post "users/sign_in", to: "users#sign_in"
+  get "users/sign_in/:mobile", to: "users#sign_in"
 end
