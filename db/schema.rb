@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_16_154849) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_17_050415) do
   create_table "answers", force: :cascade do |t|
     t.text "answer"
     t.integer "question_id", null: false
@@ -19,14 +19,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_16_154849) do
     t.datetime "updated_at", null: false
     t.index ["manager_id"], name: "index_answers_on_manager_id"
     t.index ["question_id"], name: "index_answers_on_question_id"
-  end
-
-  create_table "employees", force: :cascade do |t|
-    t.string "name"
-    t.integer "manager_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["manager_id"], name: "index_employees_on_manager_id"
   end
 
   create_table "managers", force: :cascade do |t|
@@ -38,16 +30,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_16_154849) do
 
   create_table "questions", force: :cascade do |t|
     t.text "query"
-    t.integer "employee_id", null: false
     t.boolean "clarified"
     t.text "remarks"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["employee_id"], name: "index_questions_on_employee_id"
   end
 
   add_foreign_key "answers", "managers"
   add_foreign_key "answers", "questions"
-  add_foreign_key "employees", "managers"
-  add_foreign_key "questions", "employees"
 end
